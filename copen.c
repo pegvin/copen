@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 static void _Usage(void) {
 	printf("Usage: copen <path-to-file>\n");
@@ -17,12 +18,18 @@ int main(int argc, char** argv) {
 	}
 
 	const char* path = argv[1];
-	size_t len = strlen(path);
+	size_t pathLen = strlen(path);
 
 	for (size_t i = 0; i < CMD_SIZE; i++) {
 		const char* suffix = commands[i][0];
-		size_t sLen = strlen(suffix);
-		if (strncmp(suffix, path + len - sLen, sLen + 1 /* compare till NULL terminator */) == 0) {
+		size_t suffixLen = strlen(suffix);
+		int isAMatch = 0;
+
+		isAMatch = case_sensitive ?
+			(strncmp(suffix, path + pathLen - suffixLen, suffixLen) == 0) :
+			(strncasecmp(suffix, path + pathLen - suffixLen, suffixLen) == 0);
+
+		if (isAMatch) {
 			#define cap 4096
 			char cmd[cap] = {0};
 			size_t cmdLen = 0;
