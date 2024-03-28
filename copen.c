@@ -70,8 +70,7 @@ skipTokenIter:
 			cmdLen += snprintf(cmd, cap, "%s ", commands[i][1]);
 			cmdLen += snprintf(cmd + cmdLen, cap - cmdLen, "%s", path);
 
-			system(cmd);
-			return 0;
+			return system(cmd);
 		}
 	}
 	printf("No command found to run for '%s'\n", path);
