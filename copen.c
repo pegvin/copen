@@ -68,7 +68,7 @@ skipTokenIter:
 			size_t cmdLen = 0;
 
 			cmdLen += snprintf(cmd, cap, "%s ", commands[i][1]);
-			cmdLen += snprintf(cmd + cmdLen, cap - cmdLen, "%s", path);
+			cmdLen += snprintf(cmd + cmdLen, cap - cmdLen, "\"%s\"", path);
 
 			return system(cmd);
 		}
