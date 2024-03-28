@@ -2,6 +2,7 @@
 int case_sensitive = 0;
 
 const char* commands[][2] = {
-	{ ".mp4", "mpv" }
+	{ ".mp4", "mpv" },
+	{ ".png,.jpg", "sxiv" }
 };
 
