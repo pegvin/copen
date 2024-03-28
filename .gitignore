@@ -53,5 +53,6 @@ dkms.conf
 
 copen
 config.h
-
+*.tar
+*.gz
 
