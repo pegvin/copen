@@ -16,7 +16,7 @@ options:
 config.h:
 	cp config.def.h $@
 
-mhkd: config.h config.mk
+copen: config.h config.mk
 	$(CC) $(CFLAGS) $(SRC) -o ./$@ $(LDFLAGS)
 
 clean:
