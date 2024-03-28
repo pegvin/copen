@@ -5,22 +5,16 @@ include config.mk
 
 SRC = copen.c
 
-all: options copen
-
-options:
-	@echo copen build options:
-	@echo "CFLAGS   = $(CFLAGS)"
-	@echo "LDFLAGS  = $(LDFLAGS)"
-	@echo "CC       = $(CC)"
+all: copen
 
 config.h:
 	cp config.def.h $@
 
-copen: config.h config.mk
+copen: config.h config.mk $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o ./$@ $(LDFLAGS)
 
 clean:
-	rm -f ./copen $(OBJ) copen-$(VERSION).tar.gz
+	rm -f ./copen copen-$(VERSION).tar.gz
 
 dist: clean
 	mkdir -p copen-$(VERSION)
@@ -40,5 +34,5 @@ install: all
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/copen $(DESTDIR)$(MANPREFIX)/man1/copen.1
 
-.PHONY: all options clean dist install uninstall
+.PHONY: all clean dist install uninstall
 
